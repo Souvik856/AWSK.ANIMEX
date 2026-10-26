@@ -3,21 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="AWSK ANIMEX - anime episodes, manga updates, and trending shows." />
+    <meta name="description" content="AWSK ANIMEX - modern anime home with latest releases, trending shows, and updates." />
     <title>AWSK ANIMEX</title>
     <style>
       :root {
-        --bg: #070b14;
-        --bg-2: #111827;
-        --panel: rgba(17, 24, 39, 0.9);
-        --panel-alt: rgba(15, 23, 42, 0.8);
+        --bg: #060b16;
+        --bg-soft: #0f172a;
+        --panel: rgba(17, 24, 39, 0.8);
+        --panel-strong: rgba(15, 23, 42, 0.95);
+        --card: rgba(15, 23, 42, 0.8);
         --heading: #f8fafc;
         --muted: #cbd5e1;
-        --line: rgba(148, 163, 184, 0.18);
+        --line: rgba(148, 163, 184, 0.14);
         --primary: #f5b942;
         --primary-strong: #f59e0b;
-        --accent: #6ee7f9;
-        --danger: #f87171;
+        --secondary: #7dd3fc;
+        --danger: #fb7185;
+        --success: #34d399;
       }
 
       * { box-sizing: border-box; }
@@ -25,27 +27,27 @@
       body {
         margin: 0;
         background:
-          radial-gradient(circle at top, rgba(245, 185, 66, 0.18), transparent 22%),
-          linear-gradient(180deg, #030712 0%, #0b1120 30%, #111827 100%);
+          radial-gradient(circle at top, rgba(245, 185, 66, 0.18), transparent 20%),
+          linear-gradient(180deg, #030712 0%, #0a1220 22%, #111827 100%);
         color: var(--heading);
         font-family: Arial, Helvetica, sans-serif;
       }
 
       a { color: inherit; text-decoration: none; }
-      img { max-width: 100%; display: block; }
+      img { display: block; max-width: 100%; }
       .container { width: min(1180px, calc(100% - 30px)); margin: 0 auto; }
 
       .topbar {
         position: sticky;
         top: 0;
-        z-index: 60;
-        background: rgba(2, 6, 23, 0.72);
+        z-index: 100;
+        background: rgba(2, 6, 23, 0.8);
         border-bottom: 1px solid var(--line);
         backdrop-filter: blur(14px);
       }
 
       .topbar-inner {
-        min-height: 72px;
+        min-height: 76px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -83,44 +85,93 @@
 
       .nav a:hover { color: var(--primary); }
 
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .search-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--line);
+        background: rgba(15, 23, 42, 0.7);
+        border-radius: 999px;
+        padding: 10px 14px;
+        min-width: 220px;
+        color: var(--muted);
+      }
+
+      .search-box input {
+        background: transparent;
+        border: none;
+        outline: none;
+        width: 100%;
+        color: var(--heading);
+        font-size: 0.92rem;
+      }
+
       .cta-btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        padding: 11px 18px;
         border-radius: 999px;
-        padding: 12px 20px;
         background: linear-gradient(135deg, var(--primary), var(--primary-strong));
         color: #111827;
         font-weight: 800;
       }
 
       .hero {
-        padding: 56px 0 28px;
+        padding: 42px 0 18px;
       }
 
-      .hero-panel {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 26px;
-        align-items: center;
-        background: rgba(15, 23, 42, 0.74);
+      .hero-shell {
+        border-radius: 30px;
+        background:
+          linear-gradient(90deg, rgba(2, 6, 23, 0.82), rgba(2, 6, 23, 0.25)),
+          url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
         border: 1px solid var(--line);
-        border-radius: 28px;
-        padding: 28px;
-        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
+        min-height: 500px;
+        display: grid;
+        align-items: end;
+        padding: 36px;
+        box-shadow: 0 18px 48px rgba(2, 6, 23, 0.35);
+      }
+
+      .hero-content {
+        max-width: 640px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(245, 185, 66, 0.12);
+        border: 1px solid rgba(245, 185, 66, 0.2);
+        color: var(--primary);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+        font-weight: 700;
       }
 
       .hero h1 {
-        margin: 0 0 16px;
-        font-size: clamp(2.5rem, 6vw, 4.4rem);
-        line-height: 1.05;
+        margin: 18px 0 12px;
+        font-size: clamp(2.6rem, 5vw, 5rem);
+        line-height: 1.02;
+        letter-spacing: -0.04em;
       }
 
       .hero p {
-        margin: 0 0 22px;
+        margin: 0 0 24px;
         color: var(--muted);
-        font-size: 1.06rem;
-        line-height: 1.8;
+        font-size: 1.02rem;
+        line-height: 1.7;
+        max-width: 54ch;
       }
 
       .hero-actions {
@@ -133,90 +184,67 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid rgba(148, 163, 184, 0.28);
+        padding: 11px 18px;
         border-radius: 999px;
-        padding: 12px 20px;
-        background: rgba(15, 23, 42, 0.45);
+        border: 1px solid rgba(148, 163, 184, 0.28);
+        background: rgba(15, 23, 42, 0.5);
         color: var(--heading);
         font-weight: 700;
       }
 
-      .feature-card {
-        border-radius: 28px;
-        background: rgba(18, 24, 38, 0.9);
-        border: 1px solid rgba(110, 231, 249, 0.25);
-        padding: 18px;
-      }
-
-      .feature-card .tag {
-        display: inline-block;
-        margin-bottom: 12px;
-        padding: 6px 10px;
-        border-radius: 999px;
-        background: rgba(110, 231, 249, 0.1);
-        border: 1px solid rgba(110, 231, 249, 0.25);
-        color: var(--accent);
-        font-size: 0.72rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .feature-poster {
-        height: 290px;
-        border-radius: 18px;
-        border: 1px solid rgba(255,255,255,0.12);
-        background:
-          linear-gradient(180deg, rgba(2,6,23,0.24), rgba(2,6,23,0.72)),
-          url('https://upload.wikimedia.org/wikipedia/en/9/9d/One_Piece%2C_Volume_61_Cover.jpg') center / cover no-repeat;
-      }
-
-      .feature-list {
-        display: grid;
-        gap: 12px;
-        margin-top: 18px;
-      }
-
-      .feature-item {
+      .stats {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 12px 14px;
-        border-radius: 14px;
-        background: rgba(15, 23, 42, 0.7);
-        border: 1px solid rgba(148, 163, 184, 0.14);
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 26px;
       }
 
-      .feature-item strong { font-size: 0.96rem; }
-      .count {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 54px;
-        padding: 6px 10px;
-        border-radius: 999px;
-        background: var(--primary);
-        color: #111827;
-        font-weight: 800;
+      .stat {
+        min-width: 120px;
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(15, 23, 42, 0.5);
+        border: 1px solid var(--line);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.4rem;
+        margin-bottom: 4px;
+      }
+
+      .stat span {
+        color: var(--muted);
         font-size: 0.8rem;
       }
 
-      .content { padding: 18px 0 70px; }
+      .content {
+        padding: 18px 0 60px;
+      }
+
+      .section {
+        margin-top: 18px;
+      }
 
       .section-head {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 14px;
-        margin: 16px 0 22px;
+        gap: 15px;
+        margin-bottom: 18px;
       }
 
       .section-head h2 {
         margin: 0;
-        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        font-size: clamp(1.5rem, 2.5vw, 2.2rem);
       }
 
-      .filters {
+      .ghost-link {
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .filter-row {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
@@ -224,18 +252,19 @@
       }
 
       .filter-tag {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         padding: 9px 14px;
-        border: 1px solid rgba(148, 163, 184, 0.2);
         border-radius: 999px;
-        background: rgba(15, 23, 42, 0.45);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        background: rgba(15, 23, 42, 0.4);
         color: var(--muted);
         font-size: 0.84rem;
       }
 
       .filter-tag.active {
-        border-color: rgba(245, 185, 66, 0.38);
         background: rgba(245, 185, 66, 0.12);
+        border-color: rgba(245, 185, 66, 0.4);
         color: var(--primary);
       }
 
@@ -248,20 +277,20 @@
       .card {
         overflow: hidden;
         border-radius: 22px;
-        background: rgba(15, 23, 42, 0.85);
+        background: var(--card);
         border: 1px solid rgba(148, 163, 184, 0.12);
-        box-shadow: 0 12px 26px rgba(15, 23, 42, 0.18);
+        box-shadow: 0 12px 28px rgba(2, 6, 23, 0.18);
       }
 
       .poster {
-        height: 260px;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+        height: 280px;
         background-size: cover;
         background-position: center;
+        border-bottom: 1px solid var(--line);
       }
 
       .card-body {
-        padding: 16px;
+        padding: 16px 16px 18px;
       }
 
       .card-body h3 {
@@ -273,32 +302,133 @@
       .meta {
         display: flex;
         justify-content: space-between;
-        gap: 12px;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .mini-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .mini-card {
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+      }
+
+      .mini-thumb {
+        height: 120px;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .mini-copy {
+        padding: 12px 14px 14px;
+      }
+
+      .mini-copy h4 {
+        margin: 0 0 6px;
+        font-size: 1rem;
+      }
+
+      .mini-copy p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .news-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .news-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 12px 14px;
+      }
+
+      .news-label {
+        min-width: 80px;
+        padding: 7px 10px;
+        border-radius: 12px;
+        background: rgba(52, 211, 153, 0.12);
+        color: var(--success);
+        border: 1px solid rgba(52, 211, 153, 0.25);
+        font-size: 0.72rem;
+        text-align: center;
+        font-weight: 700;
+      }
+
+      .news-item h4 {
+        margin: 0 0 6px;
+        font-size: 1rem;
+      }
+
+      .news-item p {
+        margin: 0;
         color: var(--muted);
         font-size: 0.8rem;
       }
 
       footer {
         border-top: 1px solid var(--line);
-        padding: 24px 0 52px;
-        text-align: center;
+        padding: 28px 0 52px;
         color: var(--muted);
       }
 
-      @media (max-width: 980px) {
-        .hero-panel { grid-template-columns: 1fr; }
-        .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
       }
 
-      @media (max-width: 620px) {
+      @media (max-width: 980px) {
+        .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .mini-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+
+      @media (max-width: 760px) {
         .topbar-inner {
           flex-direction: column;
           justify-content: center;
           padding: 12px 0;
         }
-        .nav { gap: 10px; font-size: 0.8rem; }
-        .cards { grid-template-columns: 1fr; }
-        .hero { padding-top: 36px; }
+        .nav {
+          gap: 10px;
+          font-size: 0.8rem;
+        }
+        .search-box { min-width: 180px; }
+      }
+
+      @media (max-width: 620px) {
+        .hero-shell {
+          padding: 24px 18px;
+          min-height: 410px;
+        }
+        .cards,
+        .mini-grid {
+          grid-template-columns: 1fr;
+        }
+        .section-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .nav-actions {
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
       }
     </style>
   </head>
@@ -319,54 +449,56 @@
           <a href="#">News</a>
         </nav>
 
-        <a href="#" class="cta-btn">Watch Now</a>
+        <div class="nav-actions">
+          <label class="search-box" aria-label="Search anime">
+            <span>🔎</span>
+            <input type="text" value="Search anime" aria-label="Search" />
+          </label>
+          <a href="#" class="cta-btn">Watch Now</a>
+        </div>
       </div>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="container hero-panel">
-          <div>
-            <h1>Watch anime releases, episodes, and updates.</h1>
+      <section class="hero container">
+        <div class="hero-shell">
+          <div class="hero-content">
+            <span class="eyebrow">New Season</span>
+            <h1>Discover your next obsession.</h1>
             <p>
-              AWSK ANIMEX brings together trending anime series, fresh episodes, and the newest community favorites
-              in one modern, fast-loading catalog for fans.
+              Find the hottest anime releases, trending series, and fresh episode updates in one cinematic home for fans.
             </p>
             <div class="hero-actions">
               <a href="#" class="cta-btn">Browse Anime</a>
               <a href="#" class="secondary-btn">Latest Episodes</a>
             </div>
-          </div>
 
-          <div class="feature-card" aria-label="Trending feature card">
-            <span class="tag">Featured</span>
-            <div class="feature-poster" aria-label="One Piece poster"></div>
-            <div class="feature-list">
-              <div class="feature-item">
-                <strong>Seasonal Picks</strong>
-                <span class="count">24</span>
+            <div class="stats">
+              <div class="stat">
+                <strong>98K</strong>
+                <span>Monthly viewers</span>
               </div>
-              <div class="feature-item">
-                <strong>New Episodes</strong>
-                <span class="count">18</span>
+              <div class="stat">
+                <strong>1.2K</strong>
+                <span>Titles</span>
               </div>
-              <div class="feature-item">
-                <strong>Popular Titles</strong>
-                <span class="count">98</span>
+              <div class="stat">
+                <strong>24/7</strong>
+                <span>Updates</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="content">
-        <div class="container">
+      <section class="content container">
+        <div class="section">
           <div class="section-head">
             <h2>Trending Now</h2>
-            <a href="#" class="secondary-btn">View All</a>
+            <a href="#" class="ghost-link">View all</a>
           </div>
 
-          <div class="filters" aria-label="Anime filters">
+          <div class="filter-row" aria-label="Anime filters">
             <span class="filter-tag active">All</span>
             <span class="filter-tag">Action</span>
             <span class="filter-tag">Fantasy</span>
@@ -377,7 +509,7 @@
 
           <div class="cards">
             <article class="card">
-              <div class="poster" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.1), rgba(2,6,23,0.7)), url('https://upload.wikimedia.org/wikipedia/en/9/9d/One_Piece%2C_Volume_61_Cover.jpg');"></div>
+              <div class="poster" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.15), rgba(2,6,23,0.7)), url('https://upload.wikimedia.org/wikipedia/en/9/9d/One_Piece%2C_Volume_61_Cover.jpg');"></div>
               <div class="card-body">
                 <h3>One Piece</h3>
                 <div class="meta"><span>Adventure</span><span>2025</span></div>
@@ -385,7 +517,7 @@
             </article>
 
             <article class="card">
-              <div class="poster" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.12), rgba(2,6,23,0.7)), url('https://upload.wikimedia.org/wikipedia/en/6/6b/Demon_Slayer_Kimetsu_no_Yaiba%2C_volume_1.jpg');"></div>
+              <div class="poster" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.15), rgba(2,6,23,0.7)), url('https://upload.wikimedia.org/wikipedia/en/6/6b/Demon_Slayer_Kimetsu_no_Yaiba%2C_volume_1.jpg');"></div>
               <div class="card-body">
                 <h3>Demon Slayer</h3>
                 <div class="meta"><span>Fantasy</span><span>2025</span></div>
@@ -393,7 +525,7 @@
             </article>
 
             <article class="card">
-              <div class="poster" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.12), rgba(2,6,23,0.7)), url('https://upload.wikimedia.org/wikipedia/en/d/d6/Attack_on_Titan_manga_volume_1.jpg');"></div>
+              <div class="poster" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.15), rgba(2,6,23,0.7)), url('https://upload.wikimedia.org/wikipedia/en/d/d6/Attack_on_Titan_manga_volume_1.jpg');"></div>
               <div class="card-body">
                 <h3>Attack on Titan</h3>
                 <div class="meta"><span>Action</span><span>2024</span></div>
@@ -401,42 +533,76 @@
             </article>
 
             <article class="card">
-              <div class="poster" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.12), rgba(2,6,23,0.7)), url('https://upload.wikimedia.org/wikipedia/en/2/26/Jujutsu_kaisen.jpg');"></div>
+              <div class="poster" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.15), rgba(2,6,23,0.7)), url('https://upload.wikimedia.org/wikipedia/en/2/26/Jujutsu_kaisen.jpg');"></div>
               <div class="card-body">
                 <h3>Jujutsu Kaisen</h3>
                 <div class="meta"><span>Action</span><span>2025</span></div>
               </div>
             </article>
+          </div>
+        </div>
 
-            <article class="card">
-              <div class="poster" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.12), rgba(2,6,23,0.7)), url('https://upload.wikimedia.org/wikipedia/en/a/a1/Fullmetal_Alchemist_Brotherhood.jpg');"></div>
-              <div class="card-body">
-                <h3>Fullmetal Alchemist</h3>
-                <div class="meta"><span>Adventure</span><span>2025</span></div>
+        <div class="section">
+          <div class="section-head">
+            <h2>Continue Watching</h2>
+            <a href="#" class="ghost-link">Resume</a>
+          </div>
+
+          <div class="mini-grid">
+            <article class="mini-card">
+              <div class="mini-thumb" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.1), rgba(2,6,23,0.6)), url('https://upload.wikimedia.org/wikipedia/en/a/a1/Fullmetal_Alchemist_Brotherhood.jpg');"></div>
+              <div class="mini-copy">
+                <h4>Fullmetal Alchemist</h4>
+                <p>Episode 11 • 42 mins left</p>
               </div>
             </article>
 
-            <article class="card">
-              <div class="poster" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.12), rgba(2,6,23,0.7)), url('https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg');"></div>
-              <div class="card-body">
-                <h3>Naruto Shippuden</h3>
-                <div class="meta"><span>Action</span><span>2025</span></div>
+            <article class="mini-card">
+              <div class="mini-thumb" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.1), rgba(2,6,23,0.6)), url('https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg');"></div>
+              <div class="mini-copy">
+                <h4>Naruto Shippuden</h4>
+                <p>Episode 7 • 20 mins left</p>
               </div>
             </article>
 
-            <article class="card">
-              <div class="poster" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.12), rgba(2,6,23,0.7)), url('https://upload.wikimedia.org/wikipedia/en/7/72/Black_Clover_vol_1_cover.jpg');"></div>
-              <div class="card-body">
-                <h3>Black Clover</h3>
-                <div class="meta"><span>Fantasy</span><span>2025</span></div>
+            <article class="mini-card">
+              <div class="mini-thumb" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.1), rgba(2,6,23,0.6)), url('https://upload.wikimedia.org/wikipedia/en/f/f5/Solo_Leveling_Volume_1_cover.jpg');"></div>
+              <div class="mini-copy">
+                <h4>Solo Leveling</h4>
+                <p>Episode 5 • 16 mins left</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <h2>Latest Updates</h2>
+            <a href="#" class="ghost-link">News feed</a>
+          </div>
+
+          <div class="news-list">
+            <article class="news-item">
+              <div class="news-label">New</div>
+              <div>
+                <h4>Spring releases are now live on AWSK ANIMEX</h4>
+                <p>Fresh episode updates and daily trending picks added to the homepage.</p>
               </div>
             </article>
 
-            <article class="card">
-              <div class="poster" style="background-image: linear-gradient(180deg, rgba(2,6,23,0.12), rgba(2,6,23,0.7)), url('https://upload.wikimedia.org/wikipedia/en/f/f5/Solo_Leveling_Volume_1_cover.jpg');"></div>
-              <div class="card-body">
-                <h3>Solo Leveling</h3>
-                <div class="meta"><span>Action</span><span>2025</span></div>
+            <article class="news-item">
+              <div class="news-label">Hot</div>
+              <div>
+                <h4>Top 10 action anime for this week</h4>
+                <p>Check out the newest wave of high-impact series and intense battles.</p>
+              </div>
+            </article>
+
+            <article class="news-item">
+              <div class="news-label">Guide</div>
+              <div>
+                <h4>How to keep up with every seasonal drop</h4>
+                <p>Follow the new release tracker and bookmark your favorite titles.</p>
               </div>
             </article>
           </div>
@@ -445,7 +611,10 @@
     </main>
 
     <footer>
-      <div class="container">© <span id="year"></span> AWSK ANIMEX. All rights reserved.</div>
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> AWSK ANIMEX</div>
+        <div>Anime updates • Episodes • Community</div>
+      </div>
     </footer>
 
     <script>
